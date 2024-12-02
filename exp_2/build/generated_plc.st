@@ -1,0 +1,20 @@
+PROGRAM exp2
+  VAR_INPUT
+    Start : BOOL;
+    Stop : BOOL;
+  END_VAR
+  VAR_OUTPUT
+    Motor : BOOL;
+  END_VAR
+
+  Motor := NOT(Stop) AND Start;
+END_PROGRAM
+
+
+CONFIGURATION Config0
+
+  RESOURCE Res0 ON PLC
+    TASK task0(INTERVAL := T#20ms,PRIORITY := 0);
+    PROGRAM instance0 WITH task0 : exp2;
+  END_RESOURCE
+END_CONFIGURATION
